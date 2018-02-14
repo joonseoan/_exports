@@ -1,0 +1,23 @@
+{
+  "name": "notes-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app_1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joonseoan/_exports.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joonseoan/_exports/issues"
+  },
+  "homepage": "https://github.com/joonseoan/_exports#readme",
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "yargs": "^4.7.1"
+  }
+}
