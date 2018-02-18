@@ -23,13 +23,19 @@ var removeBody = (body) => {
 
 }
 
+var getNote = (title) => {
+
+    console.log('getNote', title);
+};
+
 module.exports = {
 
     //addNote : addNote
     addNote,
     getAll,
     readTitle,
-    removeBody
+    removeBody,
+    getNote
 
 }
 

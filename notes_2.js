@@ -3,13 +3,13 @@ console.log("starting notes.js file");
 
 // explore built-in modules
 // Module object will show up.
-console.log(module);
+// console.log(module);
 
 // "exports" object will be implemented.
 // exporting this object in app.js => go there
-// The properties in exports property is not available now 
+// The properties in exports is not available now 
 // Which means that we can add new property like below.
- module.exports.age = 25;
+module.exports.age = 25;
 
 // using anonymous function
 module.exports.addNote = () => {
@@ -19,10 +19,12 @@ module.exports.addNote = () => {
 
 };
 
+/*
 // adding 
 module.exports.add = (a, b) => {
 
     return a + b;
 
 }
+*/
 

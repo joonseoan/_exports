@@ -6,7 +6,7 @@ const yargs = require('yargs');
 
 
 // "Please, split the built-in modules from the modules created.
-const notes = require('./notes_4.js');
+const notes = require('./notes_6.1.js');
 
 /**
  * [Yargs] same thing to review the arguments from the user.
@@ -54,32 +54,71 @@ const notes = require('./notes_4.js');
 const argv = yargs.argv;
 console.log('yargs.argv: ', argv);
 
-const command = process.argv[2];
+//1)
+// Using "process" object
+//const command = process.argv[2];
+
+// Using "yargs" module, 
+// "argv" is an property from "const argv = yargs.argv;" above
+const command = argv._[0];
+
 
 
 if (command === 'add') {
 
     //node app_3.js read --title="wired" --body="what the fuck am I doing?"
-    notes.addNote(argv.title, argv.body);
+    const message = notes.addNote(argv.title, argv.body);
+
+    console.log ('message from addNote: ', message);
+
+    if (message) {
+
+       notes.logNote(message);
+
+    } else {
+
+        console.log('Note title is already taken');
+    }
+
     return console.log('Yargs, Adding a new note');
 
 } else if (command === 'list') {
     
     // getAll() returns all of the nodes
     // node app_3.js list
-    notes.getAll();
-    return console.log('Yargs, listing all notes');
+    const note = notes.getANote(argv.title);
+    //console.log("NNN", note)
+   // console.log("NNNNN", note[0].title)
+
+    if (note) {
+
+        notes.logNote(note);
+
+    } else {
+
+        console.log("That note is not available")
+    }
+
+    
 
 } else if (command === 'read' )  {
 
     // node app_3.js read --title="wired"
-    notes.readTitle(argv.title);
+    // notes.readTitle(argv.title);
+    notes.getNote(argv.title);
     return console.log('Yargs, reading title');
 
 } else if (command === 'remove' )  {
 
-    // node app_3.js remove --title="wired" --body="what is this?"
-    notes.removeBody(argv.body);
+    // node app_3.js remove --title="secret2" 
+
+    // "removed" variable receives boolean types
+    const removed = notes.removeBody(argv.title);
+
+    // Ternary condition
+    const message =  removed ? "Note was removed" : "Note was not found"
+    console.log(message);
+
     return console.log('Yargs, remove body');
 
 } else { 
