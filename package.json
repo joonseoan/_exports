@@ -18,6 +18,7 @@
   "homepage": "https://github.com/joonseoan/_exports#readme",
   "dependencies": {
     "lodash": "^4.17.5",
+    "nodemon": "^1.15.1",
     "yargs": "^4.7.1"
   }
 }

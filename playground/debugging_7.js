@@ -32,7 +32,7 @@
  * 4) In debugger mode, type:
  * 
  *    c // which means "continue"
- *      // all codes run and get back to us the result. 
+ *      // all codes run and get back to us with the result. 
  * 
  * 5)  In debugger mode, type:
  * 
@@ -52,29 +52,51 @@
   * Also, we use "dubugger;" : actually, it is the most useful!!!
   * I know debugger.
   * 
+  *    //[fyi] : this is not for debugging_7.js. It is for app_3.js and its child notes_6.1.js
   * 1) debugger; // in the code
   * 2) debugging mode in the terminal
-  * 3) c // it stops at debugger; in the code
-  * 4) repl // we find the status prior to "debugger."
-  * 
-  * 
-  * for instance
-  * 
-  * node inspect app_3.js list --title=secret2
-  * c
-  * rpel
-  * "note"
+  *    In terminal, type: 
+  *    node inspect app_3.js add --type="buying" --body="buy something"
+  *    c //it stops at debugger; in the code
+  *    repl //we find the status prior to "debugger."
+  *    note // execute somethng like this
   * 
   * 
   */
 
   /**
    * 
-   * "nodemand" // it is same as above...but it is automatic
+   * Setup: 
+   *   npm i -g nodemon@latest  
+   *  
+   * 
+   * "nodemon" // it is same as above...but it is automatic
    * more useful.
    * 
+   * //[fyi] : this is not for debugging_7.js. It is for app_3.js and its child notes_6.1.js
    * nodemon inspect app_3.js list --title=secret2
    * 
+   */
+
+
+   /**
+    * 1)
+   * In terminal, type: 
+   * node --inspect-brk playground/debugging_7.js
+   * 
+   * Then, in chrome browser, type:
+   * chrome://inspect
+   * 
+   * Then, click "Open dedicated ~~~"" 
+   *
+   * 2) 
+   * In terminal, type: 
+   * nodemon --inspect-brk playground/debugging_7.js
+   * 
+   * Then, in chrome browser, type:
+   * chrome://inspect
+   * 
+   * Then, click "Open dedicated ~~~"" 
    */
 
 

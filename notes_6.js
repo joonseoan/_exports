@@ -22,6 +22,7 @@ const addNote = (title, body) => {
 
         //[FYI] No Data is availble in JSON, An error will occur.
         // In order to prevent this, we need to use try ~ catch
+
         var noteString = fs.readFileSync('notes-data.json');
 
         //JSON.parse(noteString) //returns an array. So "notes" here copy the array.
@@ -31,19 +32,17 @@ const addNote = (title, body) => {
 
          } catch (e) {
             
-            // *****The difference is that try~ catch does not make stop the code is working
+            // *****The difference is that try~ catch does not make stop at the "catch" part. 
             // even if there is an error 
             console.log('something wrong');
 
          }
 
-
-
-         // fiter a method to find the elements in the condition of return of callback.
+         // filter is a method to find the elements in the condition of return of callback.
          // 
-         // The existing "note" which is an argument below compares the the new property "title" 
+         // The existing "note" which is an argument below that compares the the new property "title" 
          // if it is "true", no same element exists and then the array will enclose it
-         // otherwise, the new element will dumped out. ***** 
+         // otherwise, the new element will dump out. ***** 
          /*
          1)
          var duplicateNotes = notes.filter((note) => {
@@ -58,6 +57,8 @@ const addNote = (title, body) => {
          // 2)
          // ES6
          var duplicateNotes = notes.filter( (note) => note.title === title); 
+
+         console.log('duplicateNotes:    ', duplicateNotes)
 
          if (duplicateNotes.length === 0)
          {

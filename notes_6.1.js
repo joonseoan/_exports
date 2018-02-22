@@ -45,7 +45,7 @@ const addNote = (title, body) => {
    {
             console.log('duplicate  ', duplicateNotes);
 
-            notes.push(note)
+            notes.push(note);
             saveNotes(notes);
 
             // just remind if the condition is fulfilled,
@@ -84,19 +84,31 @@ var removeBody = (title) => {
     // save new removed array
 
     // It is a way to return "true" or "false"
-    return notes.length !== removeElement;
+    return notes.length !== removeElement.length;
     
 }
+
+
 
 // To remove duplicated codes
 const logNote = (note) => {
     
     // debugging line
+    // 1) node inspect app_3.js add --title="toBuy" --body="some buying"
+    // 2) c
+    // 3) note
     debugger;
     
+    console.log('--------')
     console.log("A note found is......")
     console.log(`title: ${note.title}`);
     console.log(`body: ${note.body}`);
+
+}
+
+var getAll = () => {
+
+    return fetchNotes();
 
 }
 
@@ -108,6 +120,7 @@ module.exports = {
     getANote,
     readTitle,
     removeBody,
+    getAll,
     logNote
 
 }

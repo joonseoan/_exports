@@ -51,8 +51,10 @@ const notes = require('./notes_6.1.js');
  */
 
  // argv is an property of yargs object.
+ /*
 const argv = yargs.argv;
 console.log('yargs.argv: ', argv);
+
 
 //1)
 // Using "process" object
@@ -84,12 +86,31 @@ if (command === 'add') {
 
 } else if (command === 'list') {
     
-    // getAll() returns all of the nodes
-    // node app_3.js list
-    const note = notes.getANote(argv.title);
+    // "getAll()" in "notes_6.1.js" returns all of the nodes in an array
+    // 
+    // const allNotes = notes.getAll();
+    // console.log(`Printing ${allNotes.length} notes.`);
+*/
+    //ES5
+    /*
+    alllNotes.forEach( (note) => {
+        
+        // in notes_6.1
+        notes.logNote(note);
+    
+    });
+
+    */
+
+    // es6
+    // compared to "map" function, forEach ==> no return***
+    // allNotes.forEach( (note) =>  notes.logNote(note));
+    
+    
     //console.log("NNN", note)
    // console.log("NNNNN", note[0].title)
 
+   /*
     if (note) {
 
         notes.logNote(note);
@@ -98,8 +119,9 @@ if (command === 'add') {
 
         console.log("That note is not available")
     }
+    */
 
-    
+/*  
 
 } else if (command === 'read' )  {
 
@@ -126,7 +148,7 @@ if (command === 'add') {
     return console.log('Command not recognized.');
 
 }
-
+*/
 
 
 /** 
@@ -184,3 +206,146 @@ return console.log('Removing notes');
 else
 return console.log('Command not recognized.');
 */
+
+// ------------------------------------------------------------------------------- (yargs final)
+
+/**
+ *  [ dive in yargs ]
+ *  .command (command, description, [module])
+ * 
+ */
+
+const titleOptions =  {
+    describe: 'Titel of note',
+    demand: true, // required
+    alias: 't'
+}
+
+const bodyOptions = {
+    describe: 'Body of note',
+    demand: false, // not required
+    alias: 'b' // it can be uses instead of --body=" "
+}
+
+const argv = yargs
+    .command ('add', 'Add a note', {
+        title: titleOptions,
+        body: bodyOptions
+    })
+    .command ('list', 'List all notes')
+    .command ('read', 'Read a note', {
+
+        title : titleOptions
+    })
+    .command ('remove', 'remove a note', {
+
+        title:titleOptions
+    })
+    .help() // node app_3.js -- help
+    .argv; //
+
+console.log('yargs.argv: ', argv);
+
+/**
+ * [result]
+ * 
+ * 
+ $ node app_3.js --help
+starting app.js
+starting notes_6.1js file
+using app_3.js
+Commands:
+  add     Add a note
+  list    List all notes
+  read    Read a note
+  remove  remove a note
+
+Options:
+  --help  Show help                                               [boolean]
+
+
+
+ $ node app_3.js add
+starting app.js
+starting notes_6.1js file
+using app_3.js
+app_3.js add
+
+Options:
+  --help       Show help                                               [boolean]
+  --title, -t  Titel of note                                          [required]
+  --body, -b   Body of note
+
+Missing required argument: title
+ 
+
+
+
+$ node app_3.js add -t="fun" -b="what?"
+yargs.argv:  { _: [ 'add' ],
+  help: false,
+  t: 'fun',
+  title: 'fun',
+  b: 'what?',
+  body: 'what?',
+  '$0': 'app_3.js' }
+ * 
+ * 
+ * 
+ * remove, read, list are all same as above!!!
+ */
+
+
+const command = argv._[0];
+
+if (command === 'add') {
+
+    //node app_3.js read --title="wired" --body="what the fuck am I doing?"
+    const message = notes.addNote(argv.title, argv.body);
+
+    console.log ('message from addNote: ', message);
+
+    if (message) {
+
+       notes.logNote(message);
+
+    } else {
+
+        console.log('Note title is already taken');
+    }
+
+    return console.log('Yargs, Adding a new note');
+
+} else if (command === 'list') {
+    
+    // "getAll()" in "notes_6.1.js" returns all of the nodes in an array
+    // 
+    const allNotes = notes.getAll();
+    console.log(`Printing ${allNotes.length} notes.`);
+
+    allNotes.forEach( (note) =>  notes.logNote(note));
+    
+
+} else if (command === 'read' )  {
+
+    
+    notes.getANote(argv.title);
+    return console.log('Yargs, reading title');
+
+} else if (command === 'remove' )  {
+
+    const removed = notes.removeBody(argv.title);
+
+    // Ternary condition
+    const message =  removed ? "Note was removed" : "Note was not found"
+    console.log(message);
+
+    return console.log('Yargs, remove body');
+
+} else { 
+
+    return console.log('Command not recognized.');
+
+}
+
+

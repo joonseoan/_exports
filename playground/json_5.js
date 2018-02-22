@@ -1,12 +1,12 @@
 
 /**
  * [Parsing JSON]
- * json has a information of nodes impored.
+ * json has a information of nodes imported.
  * 
  * JSON stores data in String like " " : " " (except for number)
  * , converts them into object
  * , and get this back to string again.
- * ==> It is a way of node inside.
+ * ==> It is a way of node working inside.
  * 
  * 
  */
@@ -58,7 +58,7 @@ var orinalNote = {
 // However, appendFileSync should not be used more than once 
 //  because it will mess up the json format in the file.
 
-// [FYI] : ansyncronous module must not be used at the moment 
+// [FYI] : asyncronous module must not be used at the moment 
 //  we need to execute readFileSync or readFile at the next step. If we do like that, it is still in buffer.
 fs.writeFileSync('packagefile.json', json = JSON.stringify(orinalNote), (err) => {
 
